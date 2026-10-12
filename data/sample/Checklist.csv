@@ -1,0 +1,8 @@
+﻿Task,Status,Evidence
+Student columns,Complete,Students sheet
+Seven metric column lists,Complete,Academic through Feedback
+Common student_id,Complete,First column of all 8 data sheets
+Field types,Complete,Data Dictionary
+10–20 fictional records,Complete,15 invented students and linked examples
+Missing values explicit,Complete,MISSING in example cells; never auto-zero
+Database changes,None,Specification only

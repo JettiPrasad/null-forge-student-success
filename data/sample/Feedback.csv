@@ -1,0 +1,16 @@
+﻿student_id,semester,course_rating,faculty_support_rating,learning_satisfaction,feedback_comment
+NF-F001,2,1,2,Low,MISSING
+NF-F002,4,2,3,Medium,Fictional sample feedback 2
+NF-F003,6,3,4,High,Fictional sample feedback 3
+NF-F004,8,4,5,Low,Fictional sample feedback 4
+NF-F005,2,5,2,Medium,MISSING
+NF-F006,4,1,3,High,Fictional sample feedback 6
+NF-F007,6,2,4,Low,Fictional sample feedback 7
+NF-F008,8,3,5,Medium,Fictional sample feedback 8
+NF-F009,2,4,2,High,MISSING
+NF-F010,4,5,3,Low,Fictional sample feedback 10
+NF-F011,6,1,4,Medium,Fictional sample feedback 11
+NF-F012,8,2,5,High,Fictional sample feedback 12
+NF-F013,2,3,2,Low,MISSING
+NF-F014,4,4,3,Medium,Fictional sample feedback 14
+NF-F015,6,5,4,High,Fictional sample feedback 15
