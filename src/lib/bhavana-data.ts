@@ -1,4 +1,4 @@
-﻿import { readFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { parse } from "csv-parse/sync";
 import type { Student } from "@/lib/types";
@@ -288,6 +288,43 @@ export async function loadBhavanaStudents(): Promise<Student[]> {
           true,
         ),
       },
-    } satisfies Student;
+      sourceDetails: {
+        academic: {
+          academicYear: textValue(academic, "academic_year"),
+          sgpa: numberValue(academic, "sgpa", id, 0, 10),
+        },
+        attendance: {
+          classesHeld: numberValue(attendance, "classes_held", id, 0, 100000, true),
+          classesAttended: numberValue(attendance, "classes_attended", id, 0, 100000, true),
+        },
+        lms: {
+          loginCount: numberValue(lms, "login_count", id, 0, 100000, true),
+          loginPeriod: "unspecified",
+          timeSpentHours: numberValue(lms, "time_spent_hours", id, 0, 100000),
+          quizAveragePct: numberValue(lms, "quiz_avg_pct", id, 0, 100),
+        },
+        engagement: {
+          projectsCompleted: numberValue(engagement, "projects_completed", id, 0, 100000, true),
+          engagementLevel: textValue(engagement, "engagement_level"),
+        },
+        placement: {
+          interest: textValue(placement, "placement_interest"),
+          internshipStatus: textValue(placement, "internship_status"),
+          trainingHours: numberValue(placement, "training_hours", id, 0, 100000),
+          applicationsCount: numberValue(placement, "applications_count", id, 0, 100000, true),
+          offersCount: numberValue(placement, "offers_count", id, 0, 100000, true),
+          status: textValue(placement, "placement_status"),
+        },
+        skills: {
+          primarySkill: textValue(skills, "primary_skill"),
+          pythonLevel: textValue(skills, "python_level"),
+          sqlLevel: textValue(skills, "sql_level"),
+          communicationLevel: textValue(skills, "communication_level"),
+        },
+        feedback: {
+          learningSatisfaction: textValue(feedback, "learning_satisfaction"),
+          comment: textValue(feedback, "feedback_comment"),
+        },
+      },    } satisfies Student;
   });
 }
