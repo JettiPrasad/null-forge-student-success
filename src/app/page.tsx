@@ -4,12 +4,20 @@ import { useEffect, useMemo, useState } from "react";
 import { mockStudents } from "@/lib/mock-students";
 import { buildAnalyzedStudents, summarizeDashboard } from "@/lib/view-model";
 import type { OverallRiskLevel, Student } from "@/lib/types";
+import { assessPlacementActivity } from "@/lib/placement-activity";
 
 type RiskFilter = "All" | OverallRiskLevel;
 type Screen = "Overview" | "Students";
 
 function formatScore(score: number | null): string {
   return score === null ? "N/A" : score.toFixed(1);
+}
+
+function formatSourceValue(value: string | number | null | undefined): string {
+  if (value === null || value === undefined || value === "") {
+    return "Unavailable";
+  }
+  return String(value);
 }
 
 function riskStyle(level: OverallRiskLevel): string {
@@ -105,6 +113,13 @@ export default function Home() {
   const records = useMemo(() => buildAnalyzedStudents(students), [students]);
 
   const summary = useMemo(() => summarizeDashboard(records), [records]);
+  const placementActivityReviewCount = useMemo(
+    () =>
+      records.filter(
+        ({ student }) => assessPlacementActivity(student).status === "review",
+      ).length,
+    [records],
+  );
 
   const filteredRecords = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -287,6 +302,7 @@ export default function Home() {
                     ["Academic support", summary.academicRiskCount],
                     ["Attendance support", summary.attendanceRiskCount],
                     ["Placement readiness", summary.placementRiskCount],
+                    ["Placement activity review", placementActivityReviewCount],
                   ].map(([label, count]) => (
                     <div
                       key={String(label)}
@@ -326,7 +342,7 @@ export default function Home() {
                   onClick={() => setScreen("Students")}
                   className="text-sm font-medium text-indigo-300 hover:text-indigo-200"
                 >
-                  View all students â†’
+                  View all students Ã¢â€ â€™
                 </button>
               </div>
 
@@ -358,7 +374,7 @@ export default function Home() {
                       <div>
                         <p className="font-medium">{student.fullName}</p>
                         <p className="mt-1 text-xs text-slate-500">
-                          {student.id} Â· {student.department}
+                          {student.id} Ã‚Â· {student.department}
                         </p>
                         <p className="mt-2 text-sm text-slate-400">
                           {analysis.riskFlags[0]?.reason}
@@ -443,7 +459,7 @@ export default function Home() {
                       <div>
                         <p className="font-medium">{student.fullName}</p>
                         <p className="mt-1 text-xs text-slate-500">
-                          {student.id} Â· {student.department} Â· Year{" "}
+                          {student.id} Ã‚Â· {student.department} Ã‚Â· Year{" "}
                           {student.yearOfStudy}
                         </p>
                       </div>
@@ -482,7 +498,7 @@ export default function Home() {
                           {selectedRecord.student.fullName}
                         </h3>
                         <p className="mt-1 text-sm text-slate-400">
-                          {selectedRecord.student.id} Â·{" "}
+                          {selectedRecord.student.id} Ã‚Â·{" "}
                           {selectedRecord.student.department}
                         </p>
                       </div>
@@ -507,6 +523,102 @@ export default function Home() {
                           {selectedRecord.analysis.dataCoverage}%
                         </p>
                       </div>
+                    </div>
+
+                    <h4 className="mt-7 font-semibold">Integrated source data</h4>
+                    <p className="mt-1 text-sm leading-5 text-slate-400">
+                      Values come from the supplied student dataset. Unavailable values are not treated as zero.
+                      The LMS login reporting period is unspecified.
+                    </p>
+                    <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                      {[
+                        {
+                          domain: "Academic",
+                          items: [
+                            { label: "Academic year", value: selectedRecord.student.sourceDetails?.academic?.academicYear },
+                            { label: "SGPA", value: selectedRecord.student.sourceDetails?.academic?.sgpa },
+                            { label: "CGPA", value: selectedRecord.student.academic.cgpa },
+                            { label: "Exam score (%)", value: selectedRecord.student.academic.averageMarks },
+                            { label: "Backlogs", value: selectedRecord.student.academic.backlogs },
+                          ],
+                        },
+                        {
+                          domain: "Attendance",
+                          items: [
+                            { label: "Overall attendance (%)", value: selectedRecord.student.attendance.overallPercentage },
+                            { label: "Classes held", value: selectedRecord.student.sourceDetails?.attendance?.classesHeld },
+                            { label: "Classes attended", value: selectedRecord.student.sourceDetails?.attendance?.classesAttended },
+                          ],
+                        },
+                        {
+                          domain: "LMS",
+                          items: [
+                            { label: "Login count (period unspecified)", value: selectedRecord.student.sourceDetails?.lms?.loginCount },
+                            { label: "Time spent (hours)", value: selectedRecord.student.sourceDetails?.lms?.timeSpentHours },
+                            { label: "Quiz average (%)", value: selectedRecord.student.sourceDetails?.lms?.quizAveragePct },
+                            { label: "Assignments submitted", value: selectedRecord.student.lms.assignmentsCompleted },
+                            { label: "Assignments assigned", value: selectedRecord.student.lms.assignmentsTotal },
+                          ],
+                        },
+                        {
+                          domain: "Engagement",
+                          items: [
+                            { label: "Events attended", value: selectedRecord.student.engagement.eventsAttended },
+                            { label: "Club participation", value: selectedRecord.student.engagement.clubMember === null ? null : selectedRecord.student.engagement.clubMember ? "Yes" : "No" },
+                            { label: "Projects completed", value: selectedRecord.student.sourceDetails?.engagement?.projectsCompleted },
+                            { label: "Engagement level", value: selectedRecord.student.sourceDetails?.engagement?.engagementLevel },
+                            { label: "Certifications", value: selectedRecord.student.engagement.certifications },
+                          ],
+                        },
+                        {
+                          domain: "Placement",
+                          items: [
+                            { label: "Interest", value: selectedRecord.student.sourceDetails?.placement?.interest },
+                            { label: "Internship status", value: selectedRecord.student.sourceDetails?.placement?.internshipStatus },
+                            { label: "Placement status", value: selectedRecord.student.sourceDetails?.placement?.status },
+                            { label: "Training hours", value: selectedRecord.student.sourceDetails?.placement?.trainingHours },
+                            { label: "Applications", value: selectedRecord.student.sourceDetails?.placement?.applicationsCount },
+                            { label: "Offers", value: selectedRecord.student.sourceDetails?.placement?.offersCount },
+                            { label: "Aptitude assessment", value: selectedRecord.student.placement.aptitudeScore },
+                            { label: "Coding assessment", value: selectedRecord.student.placement.codingScore },
+                            { label: "Mock interview", value: selectedRecord.student.placement.mockInterviewScore },
+                          ],
+                        },
+                        {
+                          domain: "Skills",
+                          items: [
+                            { label: "Primary skill", value: selectedRecord.student.sourceDetails?.skills?.primarySkill },
+                            { label: "Python level", value: selectedRecord.student.sourceDetails?.skills?.pythonLevel },
+                            { label: "SQL level", value: selectedRecord.student.sourceDetails?.skills?.sqlLevel },
+                            { label: "Communication level", value: selectedRecord.student.sourceDetails?.skills?.communicationLevel },
+                            { label: "Technical assessment", value: selectedRecord.student.skills.technicalScore },
+                            { label: "Soft-skill assessment", value: selectedRecord.student.skills.softSkillScore },
+                          ],
+                        },
+                        {
+                          domain: "Feedback",
+                          items: [
+                            { label: "Course rating (1–5)", value: selectedRecord.student.feedback.studentSatisfaction },
+                            { label: "Faculty support (1–5)", value: selectedRecord.student.feedback.facultyFeedbackScore },
+                            { label: "Learning satisfaction", value: selectedRecord.student.sourceDetails?.feedback?.learningSatisfaction },
+                            { label: "Feedback comment", value: selectedRecord.student.sourceDetails?.feedback?.comment },
+                          ],
+                        },
+                      ].map(({ domain, items }) => (
+                        <div key={domain} className="rounded-xl border border-slate-800 bg-slate-950 p-4">
+                          <h5 className="font-medium text-slate-200">{domain}</h5>
+                          <dl className="mt-3 space-y-2">
+                            {items.map(({ label, value }) => (
+                              <div key={label} className="flex items-start justify-between gap-3 border-b border-slate-800/70 pb-2 last:border-0">
+                                <dt className="text-xs text-slate-500">{label}</dt>
+                                <dd className="max-w-[60%] break-words text-right text-xs text-slate-300">
+                                  {formatSourceValue(value)}
+                                </dd>
+                              </div>
+                            ))}
+                          </dl>
+                        </div>
+                      ))}
                     </div>
 
                     <h4 className="mt-7 font-semibold">Score breakdown</h4>
@@ -574,6 +686,29 @@ export default function Home() {
                       ))}
                     </ul>
 
+                    <h4 className="mt-7 font-semibold">Placement activity review</h4>
+                    {(() => {
+                      const activity = assessPlacementActivity(selectedRecord.student);
+                      const accent =
+                        activity.status === "review"
+                          ? "border-amber-400/30 bg-amber-400/10"
+                          : activity.status === "recorded"
+                            ? "border-emerald-400/30 bg-emerald-400/10"
+                            : "border-slate-800 bg-slate-950";
+                      return (
+                        <div className={`mt-3 rounded-xl border p-4 ${accent}`}>
+                          <p className="font-medium">{activity.title}</p>
+                          <p className="mt-2 text-sm leading-5 text-slate-400">{activity.rationale}</p>
+                          <p className="mt-2 text-sm leading-5 text-slate-300">
+                            Suggested action: {activity.suggestedAction}
+                          </p>
+                          <p className="mt-3 text-xs text-slate-500">
+                            Workflow indicator only; not a prediction of placement outcomes.
+                          </p>
+                        </div>
+                      );
+                    })()}
+
                     <h4 className="mt-7 font-semibold">Student segments</h4>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {selectedRecord.analysis.segments.length > 0 ? (
@@ -603,8 +738,8 @@ export default function Home() {
         )}
 
         <footer className="mt-10 border-t border-slate-800 py-5 text-xs leading-5 text-slate-500">
-          NULL FORGE Â· HackXLerate 2026 prototype Â· Fictional demonstration data
-          Â· Risk indicators are transparent rules, not validated predictions.
+          NULL FORGE Ã‚Â· HackXLerate 2026 prototype Ã‚Â· Fictional demonstration data
+          Ã‚Â· Risk indicators are transparent rules, not validated predictions.
           Missing input data is shown as unavailable.
         </footer>
       </div>

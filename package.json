@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "verify:scoring": "tsx scripts/verify-scoring.ts",
-    "verify:dataset": "tsx scripts/verify-bhavana-data.ts"
+    "verify:dataset": "tsx scripts/verify-bhavana-data.ts",
+    "verify:release": "tsx scripts/verify-release.ts"
   },
   "dependencies": {
     "@google/genai": "^2.28.0",

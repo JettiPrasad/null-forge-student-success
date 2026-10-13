@@ -49,8 +49,40 @@ export interface Student {
     studentSatisfaction: number | null;
     facultyFeedbackScore: number | null;
   };
+  // Original source facts not represented by the numeric scoring model.
+  sourceDetails?: {
+    academic?: { academicYear: string | null; sgpa: number | null };
+    attendance?: { classesHeld: number | null; classesAttended: number | null };
+    lms?: {
+      loginCount: number | null;
+      loginPeriod: "unspecified";
+      timeSpentHours: number | null;
+      quizAveragePct: number | null;
+    };
+    engagement?: {
+      projectsCompleted: number | null;
+      engagementLevel: string | null;
+    };
+    placement?: {
+      interest: string | null;
+      internshipStatus: string | null;
+      trainingHours: number | null;
+      applicationsCount: number | null;
+      offersCount: number | null;
+      status: string | null;
+    };
+    skills?: {
+      primarySkill: string | null;
+      pythonLevel: string | null;
+      sqlLevel: string | null;
+      communicationLevel: string | null;
+    };
+    feedback?: {
+      learningSatisfaction: string | null;
+      comment: string | null;
+    };
+  };
 }
-
 export type DomainKey =
   | "academic"
   | "attendance"
