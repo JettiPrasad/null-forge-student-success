@@ -1,0 +1,16 @@
+﻿student_id,semester,club_participation,events_attended,projects_completed,engagement_level
+NF-F001,2,Yes,0,0,Low
+NF-F002,4,No,1,1,Medium
+NF-F003,6,Yes,2,2,High
+NF-F004,8,No,3,3,Low
+NF-F005,2,Yes,4,0,Medium
+NF-F006,4,No,5,1,High
+NF-F007,6,Yes,0,2,Low
+NF-F008,8,No,1,3,Medium
+NF-F009,2,Yes,2,0,High
+NF-F010,4,No,3,1,Low
+NF-F011,6,Yes,4,2,Medium
+NF-F012,8,No,5,3,High
+NF-F013,2,Yes,0,0,Low
+NF-F014,4,No,1,1,Medium
+NF-F015,6,Yes,2,2,High
