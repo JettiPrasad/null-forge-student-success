@@ -1,6 +1,7 @@
-﻿import assert from "node:assert/strict";
-import { loadBhavanaStudents } from "../src/lib/bhavana-data";
+import assert from "node:assert/strict";
+import { loadDemoStudents } from "../src/lib/bhavana-data";
 import { assessPlacementActivity } from "../src/lib/placement-activity";
+import { buildProfileSignals } from "../src/lib/profile-signals";
 import { analyzeStudent } from "../src/lib/scoring";
 import type { Student } from "../src/lib/types";
 
@@ -189,10 +190,21 @@ async function main() {
 
   console.log("\n=== REAL DATASET INTEGRATION TESTS ===");
 
-  const students = await loadBhavanaStudents();
+  const students = await loadDemoStudents();
 
-  assert.equal(students.length, 15, "Expected 15 audited student records");
-  assert.equal(new Set(students.map((student) => student.id)).size, 15);
+  assert.equal(students.length, 100, "Expected 100 demo student records");
+  assert.equal(new Set(students.map((student) => student.id)).size, 100);
+
+  assert.equal(
+    students.filter((student) => student.id.startsWith("NF-F")).length,
+    15,
+    "Expected 15 original source records",
+  );
+  assert.equal(
+    students.filter((student) => student.id.startsWith("NF-S")).length,
+    85,
+    "Expected 85 synthetic demo records",
+  );
 
   for (const student of students) {
     assert.ok(student.sourceDetails, `${student.id}: source details missing`);
@@ -206,18 +218,43 @@ async function main() {
 
     const activity = assessPlacementActivity(student);
     assert.ok(activity.title && activity.rationale && activity.suggestedAction);
+
+    const signals = buildProfileSignals(student);
+    assert.ok(
+      signals.every(
+        (signal) =>
+          signal.id.length > 0 &&
+          signal.label.length > 0 &&
+          signal.reason.length > 0,
+      ),
+      `${student.id}: profile signals must be explainable when present`,
+    );
   }
+
+  assert.ok(
+    students.some((student) =>
+      buildProfileSignals(student).some((signal) => signal.id === "skills-profile"),
+    ),
+    "Expected categorical skills evidence to produce a profile signal",
+  );
+  assert.ok(
+    students.some((student) =>
+      buildProfileSignals(student).some((signal) => signal.id === "project-experience"),
+    ),
+    "Expected recorded project evidence to produce a profile signal",
+  );
 
   assert.ok(
     students.some((student) => assessPlacementActivity(student).status === "review"),
     "Expected at least one genuine source record requiring placement activity review",
   );
 
-  console.log("PASS 15 unique audited records");
+  console.log("PASS 100 unique demo records (15 source + 85 synthetic)");
   console.log("PASS source details present for every record");
   console.log("PASS unknown login period remains unscored");
   console.log("PASS unavailable placement/skill scores remain null");
   console.log("PASS actual placement alerts have explainable actions");
+  console.log("PASS profile signals use recorded evidence with explanations");
   console.log("\nALL RELEASE TESTS PASSED");
 }
 

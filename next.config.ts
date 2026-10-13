@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   outputFileTracingIncludes: {
-    "/api/students": ["./data/sample/*.csv"],
+    "/api/students": ["./data/demo/*.csv"],
   },
   turbopack: {
     rules: {
