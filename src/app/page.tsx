@@ -342,7 +342,7 @@ export default function Home() {
                   onClick={() => setScreen("Students")}
                   className="text-sm font-medium text-indigo-300 hover:text-indigo-200"
                 >
-                  View all students Ã¢â€ â€™
+                  View all students →
                 </button>
               </div>
 
@@ -374,7 +374,7 @@ export default function Home() {
                       <div>
                         <p className="font-medium">{student.fullName}</p>
                         <p className="mt-1 text-xs text-slate-500">
-                          {student.id} Ã‚Â· {student.department}
+                          {student.id} · {student.department}
                         </p>
                         <p className="mt-2 text-sm text-slate-400">
                           {analysis.riskFlags[0]?.reason}
@@ -459,7 +459,7 @@ export default function Home() {
                       <div>
                         <p className="font-medium">{student.fullName}</p>
                         <p className="mt-1 text-xs text-slate-500">
-                          {student.id} Ã‚Â· {student.department} Ã‚Â· Year{" "}
+                          {student.id} · {student.department} · Year{" "}
                           {student.yearOfStudy}
                         </p>
                       </div>
@@ -498,7 +498,7 @@ export default function Home() {
                           {selectedRecord.student.fullName}
                         </h3>
                         <p className="mt-1 text-sm text-slate-400">
-                          {selectedRecord.student.id} Ã‚Â·{" "}
+                          {selectedRecord.student.id} ·{" "}
                           {selectedRecord.student.department}
                         </p>
                       </div>
@@ -738,8 +738,8 @@ export default function Home() {
         )}
 
         <footer className="mt-10 border-t border-slate-800 py-5 text-xs leading-5 text-slate-500">
-          NULL FORGE Ã‚Â· HackXLerate 2026 prototype Ã‚Â· Fictional demonstration data
-          Ã‚Â· Risk indicators are transparent rules, not validated predictions.
+          NULL FORGE · HackXLerate 2026 prototype · Fictional demonstration data
+          · Risk indicators are transparent rules, not validated predictions.
           Missing input data is shown as unavailable.
         </footer>
       </div>
