@@ -1,0 +1,65 @@
+﻿import { loadBhavanaStudents } from "../src/lib/bhavana-data";
+import { buildAnalyzedStudents, summarizeDashboard } from "../src/lib/view-model";
+
+async function main() {
+  const students = await loadBhavanaStudents();
+
+  if (students.length !== 15) {
+    throw new Error(`Expected 15 students; got ${students.length}`);
+  }
+
+  if (new Set(students.map((student) => student.id)).size !== 15) {
+    throw new Error("Student IDs are not unique");
+  }
+
+  for (const student of students) {
+    if (student.lms.loginsLast7Days !== null) {
+      throw new Error(`${student.id}: unspecified login period was mapped`);
+    }
+
+    if (
+      student.placement.aptitudeScore !== null ||
+      student.placement.codingScore !== null ||
+      student.placement.mockInterviewScore !== null
+    ) {
+      throw new Error(`${student.id}: fabricated placement score detected`);
+    }
+
+    if (
+      student.skills.technicalScore !== null ||
+      student.skills.softSkillScore !== null
+    ) {
+      throw new Error(`${student.id}: categorical skills were converted without approval`);
+    }
+  }
+
+  const analyzed = buildAnalyzedStudents(students);
+  const summary = summarizeDashboard(analyzed);
+
+  if (summary.totalStudents !== 15) {
+    throw new Error("Dashboard summary count mismatch");
+  }
+
+  console.log("DATASET VALIDATION PASSED");
+  console.log("Students loaded:", students.length);
+  console.log("Unique IDs:", new Set(students.map((student) => student.id)).size);
+  console.log("Dashboard summary:", summary);
+  console.log("\nStudent analyses:");
+
+  for (const { student, analysis } of analyzed) {
+    console.log({
+      id: student.id,
+      name: student.fullName,
+      score: analysis.score,
+      coverage: analysis.dataCoverage,
+      risk: analysis.riskLevel,
+      flags: analysis.riskFlags.map((flag) => flag.id),
+    });
+  }
+}
+
+main().catch((error: unknown) => {
+  console.error("DATASET VALIDATION FAILED");
+  console.error(error);
+  process.exitCode = 1;
+});

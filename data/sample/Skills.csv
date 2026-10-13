@@ -1,0 +1,16 @@
+﻿student_id,primary_skill,python_level,sql_level,communication_level,certifications_count
+NF-F001,Python,Beginner,Intermediate,Low,0
+NF-F002,SQL,Intermediate,Advanced,Medium,1
+NF-F003,Java,Advanced,Beginner,High,2
+NF-F004,Data Analysis,Beginner,Intermediate,Low,3
+NF-F005,Web Development,Intermediate,Advanced,Medium,0
+NF-F006,Python,Advanced,Beginner,High,1
+NF-F007,SQL,Beginner,Intermediate,Low,2
+NF-F008,Java,Intermediate,Advanced,Medium,3
+NF-F009,Data Analysis,Advanced,Beginner,High,0
+NF-F010,Web Development,Beginner,Intermediate,Low,1
+NF-F011,Python,Intermediate,Advanced,Medium,2
+NF-F012,SQL,Advanced,Beginner,High,3
+NF-F013,Java,Beginner,Intermediate,Low,0
+NF-F014,Data Analysis,Intermediate,Advanced,Medium,1
+NF-F015,Web Development,Advanced,Beginner,High,2

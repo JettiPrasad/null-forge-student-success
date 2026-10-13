@@ -1,0 +1,16 @@
+﻿student_id,student_name,department,year,semester
+NF-F001,Aarav Sen,CSE(AI),1,2
+NF-F002,Mira Dev,CSE,2,4
+NF-F003,Kiran Vale,ECE,3,6
+NF-F004,Tara Nair,EEE,4,8
+NF-F005,Ishan Rao,MECH,1,2
+NF-F006,Nila Das,CSE(AI),2,4
+NF-F007,Rohan Mehta,CSE,3,6
+NF-F008,Diya Shah,ECE,4,8
+NF-F009,Vivan Roy,EEE,1,2
+NF-F010,Anika Jain,MECH,2,4
+NF-F011,Neel Varma,CSE(AI),3,6
+NF-F012,Sara Paul,CSE,4,8
+NF-F013,Arjun Bose,ECE,1,2
+NF-F014,Leela Menon,EEE,2,4
+NF-F015,Kabir Sethi,MECH,3,6

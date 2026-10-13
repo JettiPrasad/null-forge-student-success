@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { mockStudents } from "@/lib/mock-students";
 import { buildAnalyzedStudents, summarizeDashboard } from "@/lib/view-model";
-import type { OverallRiskLevel } from "@/lib/types";
+import type { OverallRiskLevel, Student } from "@/lib/types";
 
 type RiskFilter = "All" | OverallRiskLevel;
 type Screen = "Overview" | "Students";
@@ -47,10 +47,62 @@ export default function Home() {
   const [screen, setScreen] = useState<Screen>("Overview");
   const [search, setSearch] = useState("");
   const [riskFilter, setRiskFilter] = useState<RiskFilter>("All");
-  const [selectedId, setSelectedId] = useState("S001");
+  const [selectedId, setSelectedId] = useState("");
+  const [students, setStudents] = useState<Student[]>([]);
+  const [dataStatus, setDataStatus] = useState<"loading" | "bhavana" | "fallback">("loading");
 
-  // One shared analysis result per student.
-  const records = useMemo(() => buildAnalyzedStudents(mockStudents), []);
+  // Fetch validated source data; retain mock data only as a labelled fallback.
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadStudents() {
+      try {
+        const response = await fetch("/api/students", { cache: "no-store" });
+
+        if (!response.ok) {
+          throw new Error(`Students API returned HTTP ${response.status}`);
+        }
+
+        const payload = (await response.json()) as {
+          source?: string;
+          count?: number;
+          students?: Student[];
+        };
+
+        if (
+          payload.source !== "bhavana-sample" ||
+          !Array.isArray(payload.students) ||
+          payload.students.length === 0 ||
+          payload.count !== payload.students.length
+        ) {
+          throw new Error("Students API response failed source/count validation");
+        }
+
+        if (cancelled) return;
+
+        setStudents(payload.students);
+        setDataStatus("bhavana");
+        setSelectedId(payload.students[0]?.id ?? "");
+      } catch (error) {
+        console.error("Could not load Bhavana dataset; using mock fallback.", error);
+
+        if (cancelled) return;
+
+        setStudents(mockStudents);
+        setDataStatus("fallback");
+        setSelectedId(mockStudents[0]?.id ?? "");
+      }
+    }
+
+    void loadStudents();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Scores and dashboard metrics always come from the shared analysis code.
+  const records = useMemo(() => buildAnalyzedStudents(students), [students]);
 
   const summary = useMemo(() => summarizeDashboard(records), [records]);
 
@@ -108,8 +160,12 @@ export default function Home() {
             <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1.5 text-emerald-300">
               Prototype
             </span>
-            <span className="rounded-full border border-slate-700 px-3 py-1.5 text-slate-400">
-              Synthetic data
+                        <span className="rounded-full border border-slate-700 px-3 py-1.5 text-slate-400">
+              {dataStatus === "loading"
+                ? "Loading dataset..."
+                : dataStatus === "bhavana"
+                  ? `Bhavana sample | ${students.length} records`
+                  : `Mock fallback | ${students.length} records`}
             </span>
           </div>
         </div>
@@ -270,7 +326,7 @@ export default function Home() {
                   onClick={() => setScreen("Students")}
                   className="text-sm font-medium text-indigo-300 hover:text-indigo-200"
                 >
-                  View all students →
+                  View all students â†’
                 </button>
               </div>
 
@@ -302,7 +358,7 @@ export default function Home() {
                       <div>
                         <p className="font-medium">{student.fullName}</p>
                         <p className="mt-1 text-xs text-slate-500">
-                          {student.id} · {student.department}
+                          {student.id} Â· {student.department}
                         </p>
                         <p className="mt-2 text-sm text-slate-400">
                           {analysis.riskFlags[0]?.reason}
@@ -387,7 +443,7 @@ export default function Home() {
                       <div>
                         <p className="font-medium">{student.fullName}</p>
                         <p className="mt-1 text-xs text-slate-500">
-                          {student.id} · {student.department} · Year{" "}
+                          {student.id} Â· {student.department} Â· Year{" "}
                           {student.yearOfStudy}
                         </p>
                       </div>
@@ -426,7 +482,7 @@ export default function Home() {
                           {selectedRecord.student.fullName}
                         </h3>
                         <p className="mt-1 text-sm text-slate-400">
-                          {selectedRecord.student.id} ·{" "}
+                          {selectedRecord.student.id} Â·{" "}
                           {selectedRecord.student.department}
                         </p>
                       </div>
@@ -547,8 +603,8 @@ export default function Home() {
         )}
 
         <footer className="mt-10 border-t border-slate-800 py-5 text-xs leading-5 text-slate-500">
-          NULL FORGE · HackXLerate 2026 prototype · Fictional demonstration data
-          · Risk indicators are transparent rules, not validated predictions.
+          NULL FORGE Â· HackXLerate 2026 prototype Â· Fictional demonstration data
+          Â· Risk indicators are transparent rules, not validated predictions.
           Missing input data is shown as unavailable.
         </footer>
       </div>
