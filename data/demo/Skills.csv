@@ -1,0 +1,101 @@
+student_id,primary_skill,python_level,sql_level,communication_level,certifications_count
+NF-S049,Web Development,Intermediate,Intermediate,Medium,3
+NF-S048,Java,Advanced,Advanced,Low,2
+NF-S100,Data Analytics,Intermediate,Intermediate,Medium,4
+NF-S069,Web Development,Advanced,Advanced,Low,3
+NF-S068,Java,Beginner,Beginner,High,2
+NF-S067,SQL,Intermediate,Intermediate,Medium,1
+NF-S066,Python,Beginner,Beginner,Low,0
+NF-F008,Java,Intermediate,Advanced,Medium,3
+NF-S065,Data Analytics,Beginner,Beginner,High,4
+NF-F009,Data Analysis,Advanced,Beginner,High,0
+NF-S064,Web Development,Intermediate,Intermediate,Medium,3
+NF-S063,Java,Advanced,Advanced,Low,2
+NF-S062,SQL,Beginner,Beginner,High,1
+NF-S061,Python,Intermediate,Intermediate,Medium,0
+NF-S060,Data Analytics,Advanced,Advanced,Low,4
+NF-F002,SQL,Intermediate,Advanced,Medium,1
+NF-F003,Java,Advanced,Beginner,High,2
+NF-F001,Python,Beginner,Intermediate,Low,0
+NF-F015,Web Development,Advanced,Beginner,High,2
+NF-F006,Python,Advanced,Beginner,High,1
+NF-F014,Data Analysis,Intermediate,Advanced,Medium,1
+NF-F007,SQL,Beginner,Intermediate,Low,2
+NF-F004,Data Analysis,Beginner,Intermediate,Low,3
+NF-F005,Web Development,Intermediate,Advanced,Medium,0
+NF-F011,Python,Intermediate,Advanced,Medium,2
+NF-F010,Web Development,Beginner,Intermediate,Low,1
+NF-F013,Java,Beginner,Intermediate,Low,0
+NF-F012,SQL,Advanced,Beginner,High,3
+NF-S023,Java,Beginner,Beginner,High,2
+NF-S022,SQL,Intermediate,Intermediate,Medium,1
+NF-S021,Python,Advanced,Advanced,Low,0
+NF-S020,Data Analytics,Beginner,Beginner,High,4
+NF-S016,Python,Intermediate,Intermediate,Medium,0
+NF-S027,SQL,Advanced,Advanced,Low,1
+NF-S017,SQL,Beginner,Beginner,High,1
+NF-S026,Python,Beginner,Beginner,High,0
+NF-S025,Data Analytics,Intermediate,Intermediate,Medium,4
+NF-S024,Web Development,Advanced,Advanced,Low,3
+NF-S029,Web Development,Beginner,Beginner,High,3
+NF-S028,Java,Intermediate,Intermediate,Medium,2
+NF-S078,Java,Beginner,Beginner,Low,2
+NF-S079,Web Development,Intermediate,Intermediate,Medium,3
+NF-S018,Java,Beginner,Beginner,Low,2
+NF-S074,Web Development,Beginner,Beginner,High,3
+NF-S098,Java,Beginner,Beginner,High,2
+NF-S019,Web Development,Intermediate,Intermediate,Medium,3
+NF-S075,Data Analytics,Advanced,Advanced,Low,4
+NF-S099,Web Development,Advanced,Advanced,Low,3
+NF-S076,Python,Intermediate,Intermediate,Medium,0
+NF-S096,Python,Advanced,Advanced,Low,0
+NF-S077,SQL,Beginner,Beginner,High,1
+NF-S097,SQL,Intermediate,Intermediate,Medium,1
+NF-S070,Data Analytics,Intermediate,Intermediate,Medium,4
+NF-S094,Web Development,Intermediate,Intermediate,Medium,3
+NF-S071,Python,Beginner,Beginner,High,0
+NF-S095,Data Analytics,Beginner,Beginner,High,4
+NF-S072,SQL,Advanced,Advanced,Low,1
+NF-S092,SQL,Beginner,Beginner,High,1
+NF-S073,Java,Intermediate,Intermediate,Medium,2
+NF-S093,Java,Advanced,Advanced,Low,2
+NF-S090,Data Analytics,Beginner,Beginner,Low,4
+NF-S091,Python,Intermediate,Intermediate,Medium,0
+NF-S030,Data Analytics,Beginner,Beginner,Low,4
+NF-S031,Python,Intermediate,Intermediate,Medium,0
+NF-S081,Python,Advanced,Advanced,Low,0
+NF-S032,SQL,Beginner,Beginner,High,1
+NF-S052,SQL,Intermediate,Intermediate,Medium,1
+NF-S080,Data Analytics,Beginner,Beginner,High,4
+NF-S033,Java,Advanced,Advanced,Low,2
+NF-S053,Java,Beginner,Beginner,High,2
+NF-S083,Java,Beginner,Beginner,High,2
+NF-S034,Web Development,Intermediate,Intermediate,Medium,3
+NF-S050,Data Analytics,Beginner,Beginner,High,4
+NF-S082,SQL,Intermediate,Intermediate,Medium,1
+NF-S035,Data Analytics,Beginner,Beginner,High,4
+NF-S051,Python,Advanced,Advanced,Low,0
+NF-S045,Data Analytics,Advanced,Advanced,Low,4
+NF-S085,Data Analytics,Intermediate,Intermediate,Medium,4
+NF-S036,Python,Advanced,Advanced,Low,0
+NF-S056,Python,Beginner,Beginner,High,0
+NF-S044,Web Development,Beginner,Beginner,High,3
+NF-S084,Web Development,Advanced,Advanced,Low,3
+NF-S037,SQL,Intermediate,Intermediate,Medium,1
+NF-S057,SQL,Advanced,Advanced,Low,1
+NF-S047,SQL,Beginner,Beginner,High,1
+NF-S087,SQL,Advanced,Advanced,Low,1
+NF-S038,Java,Beginner,Beginner,High,2
+NF-S054,Web Development,Beginner,Beginner,Low,3
+NF-S046,Python,Intermediate,Intermediate,Medium,0
+NF-S086,Python,Beginner,Beginner,High,0
+NF-S039,Web Development,Advanced,Advanced,Low,3
+NF-S055,Data Analytics,Intermediate,Intermediate,Medium,4
+NF-S041,Python,Beginner,Beginner,High,0
+NF-S089,Web Development,Beginner,Beginner,High,3
+NF-S040,Data Analytics,Intermediate,Intermediate,Medium,4
+NF-S088,Java,Intermediate,Intermediate,Medium,2
+NF-S043,Java,Intermediate,Intermediate,Medium,2
+NF-S058,Java,Intermediate,Intermediate,Medium,2
+NF-S042,SQL,Beginner,Beginner,Low,1
+NF-S059,Web Development,Beginner,Beginner,High,3

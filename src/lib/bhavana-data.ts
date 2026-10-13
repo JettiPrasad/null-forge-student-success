@@ -73,7 +73,7 @@ function nullableBoolean(row: CsvRow, key: string, context: string): boolean | n
 }
 
 async function readTable(name: string): Promise<CsvRow[]> {
-  const file = path.join(process.cwd(), "data", "sample", `${name}.csv`);
+  const file = path.join(process.cwd(), "data", "demo", `${name}.csv`);
   const source = await readFile(file, "utf8");
 
   const rows = parse(source, {
@@ -125,7 +125,7 @@ function indexDomain(
   return indexed;
 }
 
-export async function loadBhavanaStudents(): Promise<Student[]> {
+export async function loadDemoStudents(): Promise<Student[]> {
   const [
     studentRows,
     academicRows,

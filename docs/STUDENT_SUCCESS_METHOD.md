@@ -45,9 +45,27 @@ The overall risk level is high when a high-severity flag exists, moderate when o
 
 Placement activity records such as interest, internship status, training hours, applications and offers are displayed separately from placement assessment scores. They can prompt a follow-up review, but they do not replace missing aptitude, coding or mock-interview measurements.
 
+## Profile signals and placement-readiness proxy
+
+Profile signals are separate from formal score segments and risk flags. They
+surface explainable, recorded facts such as academic or attendance follow-up,
+assignment completion, projects, certifications, categorical skills, and
+placement-preparation activity. They are not diagnoses or predictive labels.
+
+For Years 3–4, a distinct placement-readiness proxy summarizes available
+academic, preparation, project, certification, and categorical-skill inputs.
+It withholds a proxy score below 50% input-weight coverage. Offers and
+placement status are deliberately excluded from its inputs, and the proxy is
+not a hiring probability or validated outcome prediction.
+
 ## Source-data caveats
 
-The sample contains 15 student records and has missing values. The source login count has no specified period, so it must not be represented as last-seven-days activity. Events attended are not equivalent to hackathons, projects completed are not hackathons, and categorical skill levels are not numeric skill-assessment scores. Unknown values remain unknown rather than being filled with fabricated measurements.
+The demo cohort contains 15 unchanged source records plus 85 deterministic
+generated records. The source login count has no specified period, so it must
+not be represented as last-seven-days activity. Events attended are not
+equivalent to hackathons, projects completed are not hackathons, and
+categorical skill levels are not numeric skill-assessment scores. Unknown
+values remain unknown rather than being filled with fabricated measurements.
 
 ## Reproduction
 
@@ -55,8 +73,11 @@ Run these checks from the repository root:
 
 - `npm run verify:dataset`
 - `npm run verify:scoring`
+- `npm run verify:analytics`
 - `npm run verify:release`
 - `npx tsc --noEmit`
-- `npm run build -- --webpack`
+- `npm run build`
 
-The application should be evaluated as a prototype using the supplied sample data. Further validation with authorized, representative data would be required before operational use.
+The application should be evaluated as a prototype using the supplied demo
+cohort. Further validation with authorized, representative data would be
+required before operational use.

@@ -1,0 +1,101 @@
+student_id,placement_interest,internship_status,training_hours,applications_count,offers_count,placement_status
+NF-S049,Yes,Applied,78,10,0,Preparing
+NF-S048,Yes,Not applied,61,3,0,Preparing
+NF-S100,Yes,Not applied,140,3,0,Preparing
+NF-S069,Yes,Applied,96,7,0,Preparing
+NF-S068,Yes,Not applied,79,0,0,Preparing
+NF-S067,Yes,Completed,62,6,0,Preparing
+NF-S066,No,Ongoing,0,2,0,Not started
+NF-F008,Undecided,Completed,21,7,0,Preparing
+NF-S065,Yes,Applied,28,5,0,Preparing
+NF-F009,No,Not applied,24,0,0,Not started
+NF-S064,Yes,Not applied,11,11,0,Preparing
+NF-S063,Yes,Completed,155,4,0,Preparing
+NF-S062,Yes,Ongoing,138,10,0,Preparing
+NF-S061,Undecided,Applied,121,3,0,Preparing
+NF-S060,Yes,Not applied,104,9,0,Preparing
+NF-F002,Undecided,Applied,3,1,0,Preparing
+NF-F003,No,Ongoing,6,2,0,Not started
+NF-F001,Yes,Not applied,0,0,0,Not started
+NF-F015,No,Ongoing,42,6,0,Not started
+NF-F006,No,Applied,15,5,0,Preparing
+NF-F014,Undecided,Applied,39,5,0,Preparing
+NF-F007,Yes,Ongoing,18,6,0,Not started
+NF-F004,Yes,Completed,9,3,0,Preparing
+NF-F005,Undecided,Not applied,12,4,0,Not started
+NF-F011,Undecided,Ongoing,30,2,0,Not started
+NF-F010,Yes,Applied,MISSING,1,0,Preparing
+NF-F013,Yes,Not applied,36,4,1,Placed
+NF-F012,No,Completed,33,3,0,Preparing
+NF-S023,Yes,Completed,119,10,0,Preparing
+NF-S022,Yes,Ongoing,102,3,0,Preparing
+NF-S021,Yes,Applied,85,9,0,Preparing
+NF-S020,Yes,Not applied,68,2,0,Preparing
+NF-S016,Undecided,Not applied,MISSING,0,0,Not started
+NF-S027,Yes,Completed,26,12,1,Placed
+NF-S017,Yes,Applied,17,7,0,Preparing
+NF-S026,No,Ongoing,9,5,0,Preparing
+NF-S025,Undecided,Applied,153,11,0,Preparing
+NF-S024,Yes,Not applied,136,4,0,Preparing
+NF-S029,Yes,Applied,60,0,0,Preparing
+NF-S028,Yes,Not applied,43,6,0,Preparing
+NF-S078,Yes,Ongoing,0,2,0,Not started
+NF-S079,Undecided,Completed,105,12,0,Preparing
+NF-S018,Yes,Ongoing,0,2,0,Not started
+NF-S074,Yes,Ongoing,20,3,0,Preparing
+NF-S098,Yes,Ongoing,106,2,0,Preparing
+NF-S019,Yes,Completed,51,8,0,Preparing
+NF-S075,Yes,Completed,37,10,0,Preparing
+NF-S099,Yes,Completed,123,9,0,Preparing
+NF-S076,No,Not applied,54,4,0,Preparing
+NF-S096,No,Not applied,72,1,0,Preparing
+NF-S077,Yes,Applied,71,11,0,Preparing
+NF-S097,Undecided,Applied,89,8,0,Preparing
+NF-S070,Undecided,Ongoing,113,1,0,Preparing
+NF-S094,Yes,Ongoing,38,0,0,Preparing
+NF-S071,Yes,Completed,130,8,1,Placed
+NF-S095,Yes,Completed,55,7,0,Preparing
+NF-S072,Yes,Not applied,147,2,0,Preparing
+NF-S092,Yes,Not applied,4,12,0,Preparing
+NF-S073,Yes,Applied,3,9,0,Preparing
+NF-S093,Yes,Applied,21,6,0,Preparing
+NF-S090,Yes,Ongoing,MISSING,2,0,Not started
+NF-S091,Yes,Completed,148,5,0,Preparing
+NF-S030,Yes,Ongoing,0,2,0,Not started
+NF-S031,Yes,Completed,94,1,0,Preparing
+NF-S081,Yes,Applied,139,0,0,Preparing
+NF-S032,Yes,Not applied,111,8,0,Preparing
+NF-S052,Undecided,Not applied,129,5,0,Preparing
+NF-S080,Yes,Not applied,122,6,0,Preparing
+NF-S033,Yes,Applied,128,2,0,Preparing
+NF-S053,Yes,Applied,MISSING,12,0,Preparing
+NF-S083,Yes,Completed,12,1,0,Preparing
+NF-S034,Undecided,Ongoing,145,9,0,Preparing
+NF-S050,Yes,Ongoing,95,4,0,Preparing
+NF-S082,Yes,Ongoing,156,7,1,Placed
+NF-S035,Yes,Completed,1,3,0,Preparing
+NF-S051,Yes,Completed,112,11,0,Preparing
+NF-S045,Yes,Applied,10,8,0,Preparing
+NF-S085,Yes,Applied,46,2,0,Preparing
+NF-S036,No,Not applied,18,10,0,Preparing
+NF-S056,No,Not applied,36,7,0,Preparing
+NF-S044,Yes,Not applied,154,1,0,Preparing
+NF-S084,Yes,Not applied,29,8,0,Preparing
+NF-S037,Yes,Applied,35,4,0,Preparing
+NF-S057,Yes,Applied,53,1,0,Preparing
+NF-S047,Yes,Completed,44,9,0,Preparing
+NF-S087,Yes,Completed,80,3,0,Preparing
+NF-S038,Yes,Ongoing,52,11,1,Placed
+NF-S054,Yes,Ongoing,0,2,0,Not started
+NF-S046,No,Ongoing,27,2,0,Preparing
+NF-S086,No,Ongoing,63,9,0,Preparing
+NF-S039,Yes,Completed,69,5,0,Preparing
+NF-S055,Yes,Completed,19,0,0,Preparing
+NF-S041,Yes,Applied,103,6,0,Preparing
+NF-S089,Yes,Applied,114,4,0,Preparing
+NF-S040,Yes,Not applied,86,12,0,Preparing
+NF-S088,Undecided,Not applied,97,10,0,Preparing
+NF-S043,Undecided,Completed,137,7,0,Preparing
+NF-S058,Yes,Ongoing,70,8,0,Preparing
+NF-S042,Yes,Ongoing,0,2,0,Not started
+NF-S059,Yes,Completed,87,2,0,Preparing

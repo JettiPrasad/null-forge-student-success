@@ -1,0 +1,101 @@
+student_id,semester,course_rating,faculty_support_rating,learning_satisfaction,feedback_comment
+NF-S049,4,5,3,Low,Needs more practice
+NF-S048,2,2,1,High,Requests additional placement guidance
+NF-S100,1,3,MISSING,Low,MISSING
+NF-S069,3,5,3,High,Requests additional placement guidance
+NF-S068,1,2,1,Medium,Learning goals are progressing
+NF-S067,8,MISSING,4,Low,Needs more practice
+NF-S066,6,1,2,High,Requests additional placement guidance
+NF-F008,8,3,5,Medium,Fictional sample feedback 8
+NF-S065,4,3,5,Medium,MISSING
+NF-F009,2,4,2,High,MISSING
+NF-S064,2,5,3,Low,Needs more practice
+NF-S063,7,2,1,High,Requests additional placement guidance
+NF-S062,5,4,4,Medium,Learning goals are progressing
+NF-S061,3,1,2,Low,Needs more practice
+NF-S060,1,3,5,High,Requests additional placement guidance
+NF-F002,4,2,3,Medium,Fictional sample feedback 2
+NF-F003,6,3,4,High,Fictional sample feedback 3
+NF-F001,2,1,2,Low,MISSING
+NF-F015,6,5,4,High,Fictional sample feedback 15
+NF-F006,4,1,3,High,Fictional sample feedback 6
+NF-F014,4,4,3,Medium,Fictional sample feedback 14
+NF-F007,6,2,4,Low,Fictional sample feedback 7
+NF-F004,8,4,5,Low,Fictional sample feedback 4
+NF-F005,2,5,2,Medium,MISSING
+NF-F011,6,1,4,Medium,Fictional sample feedback 11
+NF-F010,4,5,3,Low,Fictional sample feedback 10
+NF-F013,2,3,2,Low,MISSING
+NF-F012,8,2,5,High,Fictional sample feedback 12
+NF-S023,7,2,1,Medium,MISSING
+NF-S022,5,4,4,Low,Needs more practice
+NF-S021,3,1,2,High,Requests additional placement guidance
+NF-S020,1,3,5,Medium,Learning goals are progressing
+NF-S016,2,MISSING,MISSING,Low,MISSING
+NF-S027,8,4,4,High,Requests additional placement guidance
+NF-S017,4,4,4,Medium,Learning goals are progressing
+NF-S026,6,1,2,Medium,Learning goals are progressing
+NF-S025,4,3,5,Low,Needs more practice
+NF-S024,2,5,3,High,Requests additional placement guidance
+NF-S029,3,5,3,Medium,Learning goals are progressing
+NF-S028,1,2,1,Low,Needs more practice
+NF-S078,5,2,1,High,Requests additional placement guidance
+NF-S079,7,5,MISSING,Low,MISSING
+NF-S018,6,2,1,High,Requests additional placement guidance
+NF-S074,6,5,3,Medium,Learning goals are progressing
+NF-S098,6,2,1,Medium,Learning goals are progressing
+NF-S019,8,5,3,Low,Needs more practice
+NF-S075,8,3,5,High,Requests additional placement guidance
+NF-S099,8,5,3,High,Requests additional placement guidance
+NF-S076,1,1,2,Low,Needs more practice
+NF-S096,2,1,2,High,Requests additional placement guidance
+NF-S077,3,4,4,Medium,Learning goals are progressing
+NF-S097,4,4,4,Low,Needs more practice
+NF-S070,5,3,5,Low,Needs more practice
+NF-S094,5,5,3,Low,Needs more practice
+NF-S071,7,1,2,Medium,Learning goals are progressing
+NF-S095,7,3,5,Medium,Learning goals are progressing
+NF-S072,2,4,4,High,MISSING
+NF-S092,1,4,4,Medium,Learning goals are progressing
+NF-S073,4,2,1,Low,Needs more practice
+NF-S093,3,2,1,High,MISSING
+NF-S090,6,3,5,High,Requests additional placement guidance
+NF-S091,8,1,2,Low,Needs more practice
+NF-S030,5,3,5,High,MISSING
+NF-S031,7,1,2,Low,Needs more practice
+NF-S081,4,1,2,High,Requests additional placement guidance
+NF-S032,2,4,4,Medium,Learning goals are progressing
+NF-S052,1,4,4,Low,Needs more practice
+NF-S080,2,3,5,Medium,Learning goals are progressing
+NF-S033,4,MISSING,1,High,Requests additional placement guidance
+NF-S053,3,2,1,Medium,Learning goals are progressing
+NF-S083,8,2,1,Medium,Learning goals are progressing
+NF-S034,6,5,3,Low,Needs more practice
+NF-S050,6,MISSING,5,Medium,Learning goals are progressing
+NF-S082,6,4,4,Low,Needs more practice
+NF-S035,8,3,5,Medium,Learning goals are progressing
+NF-S051,8,1,2,High,MISSING
+NF-S045,3,3,5,High,Requests additional placement guidance
+NF-S085,3,3,5,Low,Needs more practice
+NF-S036,1,1,2,High,Requests additional placement guidance
+NF-S056,2,1,2,Medium,Learning goals are progressing
+NF-S044,1,5,3,Medium,MISSING
+NF-S084,1,MISSING,3,High,Requests additional placement guidance
+NF-S037,3,4,MISSING,Low,MISSING
+NF-S057,4,4,4,High,Requests additional placement guidance
+NF-S047,7,4,4,Medium,Learning goals are progressing
+NF-S087,7,4,4,High,Requests additional placement guidance
+NF-S038,5,2,1,Medium,Learning goals are progressing
+NF-S054,5,5,3,High,Requests additional placement guidance
+NF-S046,5,1,2,Low,Needs more practice
+NF-S086,5,1,2,Medium,MISSING
+NF-S039,7,5,3,High,Requests additional placement guidance
+NF-S055,7,3,5,Low,Needs more practice
+NF-S041,4,1,2,Medium,Learning goals are progressing
+NF-S089,4,5,3,Medium,Learning goals are progressing
+NF-S040,2,3,5,Low,Needs more practice
+NF-S088,2,2,1,Low,Needs more practice
+NF-S043,8,2,1,Low,Needs more practice
+NF-S058,6,2,MISSING,Low,MISSING
+NF-S042,6,4,4,High,Requests additional placement guidance
+NF-S059,8,5,3,Medium,Learning goals are progressing

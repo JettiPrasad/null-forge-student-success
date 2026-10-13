@@ -1,15 +1,20 @@
-﻿import { loadBhavanaStudents } from "../src/lib/bhavana-data";
+import { loadDemoStudents } from "../src/lib/bhavana-data";
 import { buildAnalyzedStudents, summarizeDashboard } from "../src/lib/view-model";
 
 async function main() {
-  const students = await loadBhavanaStudents();
+  const students = await loadDemoStudents();
 
-  if (students.length !== 15) {
-    throw new Error(`Expected 15 students; got ${students.length}`);
+  if (students.length !== 100) {
+    throw new Error(`Expected 100 demo students; got ${students.length}`);
   }
 
-  if (new Set(students.map((student) => student.id)).size !== 15) {
+  if (new Set(students.map((student) => student.id)).size !== 100) {
     throw new Error("Student IDs are not unique");
+  }
+  const originalCount = students.filter((student) => student.id.startsWith("NF-F")).length;
+  const syntheticCount = students.filter((student) => student.id.startsWith("NF-S")).length;
+  if (originalCount !== 15 || syntheticCount !== 85) {
+    throw new Error(`Expected 15 original and 85 synthetic records; got ${originalCount} and ${syntheticCount}`);
   }
 
   for (const student of students) {
@@ -36,7 +41,7 @@ async function main() {
   const analyzed = buildAnalyzedStudents(students);
   const summary = summarizeDashboard(analyzed);
 
-  if (summary.totalStudents !== 15) {
+  if (summary.totalStudents !== 100) {
     throw new Error("Dashboard summary count mismatch");
   }
 
