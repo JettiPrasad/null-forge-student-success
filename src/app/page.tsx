@@ -190,6 +190,38 @@ export default function Home() {
     [students],
   );
 
+  const placementReadinessSummary = useMemo(() => {
+    const scored = readinessRows.filter(({ proxy }) => proxy.score !== null);
+
+    return {
+      eligibleCount: readinessRows.length,
+      scoredCount: scored.length,
+      averageScore:
+        scored.length === 0
+          ? null
+          : Math.round(
+              (scored.reduce(
+                (sum, { proxy }) => sum + (proxy.score ?? 0),
+                0,
+              ) /
+                scored.length) *
+                10,
+            ) / 10,
+      reviewCount: readinessRows.filter(
+        ({ proxy }) => proxy.score !== null && proxy.score < 50,
+      ).length,
+      developCount: readinessRows.filter(
+        ({ proxy }) =>
+          proxy.score !== null && proxy.score >= 50 && proxy.score < 75,
+      ).length,
+      continueCount: readinessRows.filter(
+        ({ proxy }) => proxy.score !== null && proxy.score >= 75,
+      ).length,
+      insufficientCount: readinessRows.filter(
+        ({ proxy }) => proxy.score === null,
+      ).length,
+    };
+  }, [readinessRows]);
   function exportInterventionsCsv() {
     const headers = [
       "student_id", "student_name", "department", "year",
@@ -383,9 +415,9 @@ export default function Home() {
                 helper="At least one high-severity risk flag"
               />
               <MetricCard
-                label="Insufficient data"
-                value={String(summary.insufficientDataCount)}
-                helper="Not enough weighted inputs for a score"
+                label="Unscored students"
+                value={String(summary.unscoredStudents)}
+                helper="No composite success score"
               />
             </div>
 
@@ -393,7 +425,7 @@ export default function Home() {
               <section className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
                 <h3 className="text-lg font-semibold">Risk distribution</h3>
                 <p className="mt-1 text-sm text-slate-400">
-                  Students grouped by their current rule-based risk level.
+                  Students grouped by their rule-based risk level. Students without a composite score may still have explicit High or Moderate risk flags.
                 </p>
 
                 <div className="mt-6 space-y-5">
@@ -442,7 +474,7 @@ export default function Home() {
                   {[
                     ["Academic support", summary.academicRiskCount],
                     ["Attendance support", summary.attendanceRiskCount],
-                    ["Placement readiness", summary.placementRiskCount],
+                    ["Placement assessment flags", summary.placementRiskCount],
                     ["Placement activity review", placementActivityReviewCount],
                   ].map(([label, count]) => (
                     <div
@@ -467,6 +499,126 @@ export default function Home() {
               </section>
             </div>
 
+            <section className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <h3 className="text-lg font-semibold">Placement readiness snapshot</h3>
+                  <p className="mt-1 text-sm text-slate-400">
+                    Rule-based heuristic for eligible Years 3–4 students. This is a
+                    support indicator, not a prediction of placement outcomes.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setScreen("Insights")}
+                  className="text-sm font-medium text-indigo-300 hover:text-indigo-200"
+                >
+                  View readiness insights
+                </button>
+              </div>
+
+              <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
+                <MetricCard
+                  label="Eligible students (Years 3–4)"
+                  value={String(placementReadinessSummary.eligibleCount)}
+                  helper="Within the proxy's scope"
+                />
+                <MetricCard
+                  label="Average readiness proxy"
+                  value={placementReadinessSummary.averageScore === null ? "N/A" : `${placementReadinessSummary.averageScore}/100`}
+                  helper={`${placementReadinessSummary.scoredCount} with calculable scores`}
+                />
+                <MetricCard
+                  label="Readiness support review"
+                  value={String(placementReadinessSummary.reviewCount)}
+                  helper="Proxy score below 50"
+                />
+                <MetricCard
+                  label="Develop skills and practice"
+                  value={String(placementReadinessSummary.developCount)}
+                  helper="Proxy score from 50 to below 75"
+                />
+                <MetricCard
+                  label="Continue practice and assessment"
+                  value={String(placementReadinessSummary.continueCount)}
+                  helper="Proxy score 75 or above"
+                />
+                <MetricCard
+                  label="Insufficient proxy data"
+                  value={String(placementReadinessSummary.insufficientCount)}
+                  helper="Not enough available inputs"
+                />
+              </div>
+            </section>
+            <section className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+              <h3 className="text-lg font-semibold">
+                How the Student Success Score works
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                The score is a weighted average of available domain evidence.
+                Missing values are not treated as zero. Partially available
+                domains contribute proportionally less weight.
+              </p>
+
+              <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {[
+                  { label: "Academic", weight: 35 },
+                  { label: "Attendance", weight: 20 },
+                  { label: "LMS activity", weight: 15 },
+                  { label: "Placement assessments", weight: 15 },
+                  { label: "Skills", weight: 10 },
+                  { label: "Engagement", weight: 5 },
+                ].map(({ label, weight }) => (
+                  <div
+                    key={label}
+                    className="rounded-xl border border-slate-800 bg-slate-950 p-4"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-sm text-slate-300">{label}</span>
+                      <span className="font-semibold tabular-nums">
+                        {weight}%
+                      </span>
+                    </div>
+                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-800">
+                      <div
+                        className="h-full rounded-full bg-indigo-400"
+                        style={{ width: `${weight}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 rounded-xl border border-slate-800 bg-slate-950 p-4">
+                <h4 className="font-medium text-slate-200">
+                  Missing-data and scoring rules
+                </h4>
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-400">
+                  <li>
+                    Only available metrics contribute to the score denominator.
+                  </li>
+                  <li>
+                    Missing metrics reduce the effective contribution of their
+                    domain instead of being silently assigned zero.
+                  </li>
+                  <li>
+                    The composite score is withheld when the available weighted
+                    input is below 50% of the full model weight.
+                  </li>
+                  <li>
+                    Risk levels are assigned separately from the composite
+                    score. Explicit risk flags can identify students needing
+                    review even when their score is unavailable.
+                  </li>
+                </ul>
+              </div>
+
+              <p className="mt-4 text-xs leading-5 text-slate-500">
+                Prototype methodology: these weights and thresholds are
+                demonstration assumptions, not a validated measure of student
+                success or future outcomes.
+              </p>
+            </section>
             <section className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>

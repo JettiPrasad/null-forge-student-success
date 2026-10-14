@@ -13,6 +13,7 @@ export interface AnalyzedStudentRecord {
 export interface DashboardSummary {
   totalStudents: number;
   scoredStudents: number;
+  unscoredStudents: number;
   averageScore: number | null;
   highRiskCount: number;
   moderateRiskCount: number;
@@ -93,6 +94,9 @@ export function summarizeDashboard(
 
   return {
     totalStudents: records.length,
+    unscoredStudents: records.filter(
+      ({ analysis }) => analysis.score === null,
+    ).length,
     scoredStudents: scores.length,
     averageScore,
     highRiskCount: riskCounts.High,
